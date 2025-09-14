@@ -938,7 +938,9 @@ static UniValue getblocktemplate(const JSONRPCRequest& request)
 
     result.pushKV("hashStateRoot", pblock->hashStateRoot.GetHex());
     result.pushKV("hashUTXORoot", pblock->hashUTXORoot.GetHex());
-    result.pushKV("prevoutStake", pblock->prevoutStake.GetHex());    
+    result.pushKV("prevoutStake", pblock->prevoutStake.GetHex()); 
+    result.pushKV("vchBlockSigDlgt", pblock->vchBlockSigDlgt.GetHex());    
+
 
 
     UniValue aRules(UniValue::VARR);
