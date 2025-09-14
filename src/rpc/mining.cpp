@@ -905,6 +905,10 @@ static UniValue getblocktemplate(const JSONRPCRequest& request)
         entry.pushKV("txid", txHash.GetHex());
         entry.pushKV("hash", tx.GetWitnessHash().GetHex());
 
+        entry.pushKV("hashStateRoot", pblock->hashStateRoot.GetHex());
+        entry.pushKV("hashUTXORoot", pblock->hashUTXORoot.GetHex());
+
+
         UniValue deps(UniValue::VARR);
         for (const CTxIn &in : tx.vin)
         {
