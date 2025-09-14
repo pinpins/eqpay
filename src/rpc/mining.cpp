@@ -938,8 +938,8 @@ static UniValue getblocktemplate(const JSONRPCRequest& request)
 
     result.pushKV("hashStateRoot", pblock->hashStateRoot.GetHex());
     result.pushKV("hashUTXORoot", pblock->hashUTXORoot.GetHex());
-    result.pushKV("prevoutStake", strprintf("%s-%u", pblock->prevoutStake.hash.GetHex(), pblock->prevoutStake.n));
-    result.pushKV("vchBlockSigDlgt", HexStr(pblock->vchBlockSigDlgt));
+    result.pushKV("prevoutStake", pblock->prevoutStake.hash.GetHex() + HexStr(Span<const unsigned char>((unsigned char*)&pblock->prevoutStake.n, 4)));
+    result.pushKV("vchBlockSigDlgt", pblock->vchBlockSigDlgt.empty() ? "00" : HexStr(pblock->vchBlockSigDlgt));
 
 
     UniValue aRules(UniValue::VARR);
