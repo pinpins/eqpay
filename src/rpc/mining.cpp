@@ -905,9 +905,6 @@ static UniValue getblocktemplate(const JSONRPCRequest& request)
         entry.pushKV("txid", txHash.GetHex());
         entry.pushKV("hash", tx.GetWitnessHash().GetHex());
 
-        entry.pushKV("hashStateRoot", pblock->hashStateRoot.GetHex());
-        entry.pushKV("hashUTXORoot", pblock->hashUTXORoot.GetHex());
-
 
         UniValue deps(UniValue::VARR);
         for (const CTxIn &in : tx.vin)
@@ -937,6 +934,11 @@ static UniValue getblocktemplate(const JSONRPCRequest& request)
 
     UniValue result(UniValue::VOBJ);
     result.pushKV("capabilities", aCaps);
+
+
+    result.pushKV("hashStateRoot", pblock->hashStateRoot.GetHex());
+    result.pushKV("hashUTXORoot", pblock->hashUTXORoot.GetHex());
+
 
     UniValue aRules(UniValue::VARR);
     aRules.push_back("csv");
